@@ -1,0 +1,28 @@
+version: '3.7'
+services:
+  pg_store_db:
+    image: postgres:16
+    container_name: pg_store
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: store_db
+      POSTGRES_USER: store_user
+      POSTGRES_PASSWORD: store_password
+    volumes:  
+      - store_data:/var/lib/postgresql/data
+
+  pg_user_db:
+    image: postgres:16
+    container_name: user_db
+    ports:
+      - '5000:5000'
+    environment:
+      POSTGRES_DB: user_db
+      POSTGRES_USER: user_user
+      POSTGRES_PASSWORD: user_password
+    volumes:
+      - user_data:/var/lib/postgresql/data
+volumes:
+  store_data:
+  user_data:
